@@ -3,38 +3,61 @@
 class HearthstoneTopDecks::CLI
 
 	def call
-		list_decks
-		choose_deck
+		list_section
+		choose_section
 	end
 
-	def list_decks
+	def list_section
 		#here we're going to stub out what we want our output to look like.
-		puts <<-DOC
+		puts <<-DOC.gsub /^\s*/, ''
 		Heh, greetings.
-		Here are the top decks from Hearthstone Top Decks
+		Here are the sections of to choose from:
 		DOC
-		@decks = HearthstoneTopDecks::Decks.decks
-		@decks.each_with_index do |deck, i|
-			puts "#{i+1}. #{deck.klass} - #{deck.archetype} - #{deck.sub_archetype}"
+		@sections = HearthstoneTopDecks::Sections.sections
+		@sections.each_with_index do |section, i|
+			puts "#{i+1}. #{section}"
+		end
+	end
+
+	def choose_section
+		puts <<-DOC.gsub /^\s*/, ''
+				Which section would you like to look at?
+				'1' for Top Standard Meta Decks
+				'2' for Featured
+				'3' for Top Community Decks
+				'4' Recent/Updated Deck Guides
+				Or, enter 'exit' to exit.
+				DOC
+		input = nil
+		while input != "exit"
+			input = gets.strip.downcase
+			if input == "1"
+				@sections[:meta]
+				
+			end
 		end
 	end
 
 	def choose_deck
-		puts "Which deck would you like to look at?"
+		puts <<-DOC.gsub /^\s*/, ''
+				Which deck would you like to look at?
+				Or, enter 'exit' to exit.
+				DOC
 		#this will need to be scraped data to examine and use, but, for now,
 		#we'll stub it. stub it. stub it.
 		input = nil
 		while input != "exit"
 			input = gets.strip.downcase
-			case input
-				#for instance, "deck 1" will be the name of the deck scraped from hearthstonetopdecks.com
-			when "1"
-				#this information "info on deck 1" will be from the opened url source
-				#of deck_1's href link. So, we'll open and scrape another page.
-				#This will happen for each deck.
-				puts "info on deck 1"
-			when "2"
-				puts "info on deck 2"
+			if input.to_i > 0
+				puts @decks[input.to_i-1]
+			elsif input == "decks"
+				list_decks
+			else 
+				puts <<-DOC.gsub /^\s*/, ''
+				Which deck would you like to look at?
+				Or, enter 'exit' to exit.
+				Or, enter 'decks' to see the decks again.
+				DOC
 			end 
 		end
 	end

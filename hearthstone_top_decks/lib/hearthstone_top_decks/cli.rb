@@ -8,15 +8,15 @@ class HearthstoneTopDecks::CLI
 	end
 
 	def list_decks
-		#here we're stub out what we want our output to look like.
-		puts "Heh, greetings."
+		#here we're going to stub out what we want our output to look like.
 		puts <<-DOC
-		Top Hearthstone Decks
-		1. Deck 1
-		2. Deck 2
-		...
-		x. Deck x
+		Heh, greetings.
+		Here are the top decks from Hearthstone Top Decks
 		DOC
+		@decks = HearthstoneTopDecks::Decks.decks
+		@decks.each_with_index do |deck, i|
+			puts "#{i+1}. #{deck.klass} - #{deck.archetype} - #{deck.sub_archetype}"
+		end
 	end
 
 	def choose_deck
@@ -28,12 +28,12 @@ class HearthstoneTopDecks::CLI
 			input = gets.strip.downcase
 			case input
 				#for instance, "deck 1" will be the name of the deck scraped from hearthstonetopdecks.com
-			when "deck 1"
+			when "1"
 				#this information "info on deck 1" will be from the opened url source
 				#of deck_1's href link. So, we'll open and scrape another page.
 				#This will happen for each deck.
 				puts "info on deck 1"
-			when "deck 2"
+			when "2"
 				puts "info on deck 2"
 			end 
 		end

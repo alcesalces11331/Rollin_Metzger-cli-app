@@ -24,8 +24,8 @@ class HearthstoneTopDecks::CLI
 		#this will need to be scraped data to examine and use, but, for now,
 		#we'll stub it. stub it. stub it.
 		input = nil
-		input = gets.strip.downcase
 		while input != "exit"
+			input = gets.strip.downcase
 			case input
 				#for instance, "deck 1" will be the name of the deck scraped from hearthstonetopdecks.com
 			when "deck 1"

@@ -9,18 +9,18 @@ class HearthstoneTopDecks::CLI
 
 	def list_section
 		#here we're going to stub out what we want our output to look like.
-		puts <<-DOC.gsub /^\s*/, ''
+		puts <<~DOC
 		Heh, greetings.
 		Here are the sections of to choose from:
 		DOC
-		@sections = HearthstoneTopDecks::Sections.sections
-		@sections.each_with_index do |section, i|
-			puts "#{i+1}. #{section}"
+		@sections = HearthstoneTopDecks::Sections.section
+		@sections.each_key do |key|
+			puts key.to_s
 		end
 	end
 
 	def choose_section
-		puts <<-DOC.gsub /^\s*/, ''
+		puts <<~DOC
 				Which section would you like to look at?
 				'1' for Top Standard Meta Decks
 				'2' for Featured
@@ -33,13 +33,13 @@ class HearthstoneTopDecks::CLI
 			input = gets.strip.downcase
 			if input == "1"
 				@sections[:meta]
-				
+
 			end
 		end
 	end
 
 	def choose_deck
-		puts <<-DOC.gsub /^\s*/, ''
+		puts <<~DOC
 				Which deck would you like to look at?
 				Or, enter 'exit' to exit.
 				DOC
@@ -53,7 +53,7 @@ class HearthstoneTopDecks::CLI
 			elsif input == "decks"
 				list_decks
 			else 
-				puts <<-DOC.gsub /^\s*/, ''
+				puts <<~DOC
 				Which deck would you like to look at?
 				Or, enter 'exit' to exit.
 				Or, enter 'decks' to see the decks again.

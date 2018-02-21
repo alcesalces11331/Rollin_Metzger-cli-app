@@ -6,11 +6,14 @@ class HearthstoneTopDecks::Sections
 		#here we'll scrape all the sections on hearthstonetopdecks.com
 		#then we'll scrape the decks from those sections into an array and put that
 		#array in the corresponding section's value
-		@sections = {}
 
-		meta = self.new
+		@meta_decks = HearthstoneTopDecks::Decks.meta_decks
 
-		sections
+		sections = {}
+
+		sections[:Top_Standard_Meta_Decks] = @meta_decks
+
+		sections 
 	end
 
 

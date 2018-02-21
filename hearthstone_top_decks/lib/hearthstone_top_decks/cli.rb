@@ -14,8 +14,8 @@ class HearthstoneTopDecks::CLI
 		Here are the sections of to choose from:
 		DOC
 		@sections = HearthstoneTopDecks::Sections.section
-		@sections.each_key do |key|
-			puts key.to_s
+		@sections.each do |section|
+			puts section 
 		end
 	end
 

@@ -42,7 +42,7 @@ class HearthstoneTopDecks::CLI
 				puts <<~Doc
 
 					What section would you like to look at?
-					
+
 					'1' for Best Decks
 					'2' for Great Decks
 					'3' for Fringe Decks
@@ -56,6 +56,20 @@ class HearthstoneTopDecks::CLI
 					@best_decks.each do |deck|
 						puts deck
 					end
+				elsif input == "2"
+					puts "Great Decks:"
+					@great_decks = HearthstoneTopDecks::Scraper.great_standard_meta_decks
+					@great_decks.each do |deck|
+						puts deck
+					end
+				elsif input == "3"
+					puts "Fringe Decks:"
+					@fringe_decks = HearthstoneTopDecks::Scraper.fringe_standard_meta_decks
+					@fringe_decks.each do |deck|
+						puts deck
+					end
+				elsif input == "sections"
+					choose_section
 				end
 
 			end

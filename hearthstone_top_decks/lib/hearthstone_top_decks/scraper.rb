@@ -71,6 +71,14 @@ class HearthstoneTopDecks::Scraper
 		@new_community_decks
 	end
 
+	def self.recent_updated_deck_guides
+		@recent_updated_deck_guides
+	end
+
+	def self.top_standard_meta_decks
+		@top_standard_meta_decks
+	end
+
 	def self.great_standard_meta_decks
 		@great_standard_meta_decks
 	end

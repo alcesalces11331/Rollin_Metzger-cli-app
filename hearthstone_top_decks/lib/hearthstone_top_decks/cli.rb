@@ -23,16 +23,25 @@ class HearthstoneTopDecks::CLI
 		puts <<~DOC
 				Which section would you like to look at?
 				'1' for Top Standard Meta Decks
-				'2' for Featured
+				'2' for Featured Decks
 				'3' for Top Community Decks
-				'4' Recent/Updated Deck Guides
+				'4' for New community Decks
+				'5' Recent/Updated Deck Guides
 				Or, enter 'exit' to exit.
 				DOC
 		input = nil
 		while input != "exit"
 			input = gets.strip.downcase
-			if input == "1"
-				@sections[:meta]
+			if input == 1
+				puts <<~Doc
+					What section would you like to look at?
+					'1' for Best Decks
+					'2' for Great Decks
+					'3' for Fringe Decks
+					Or, enter 'exit' to exit.
+					Or, enter 'sections' to see the sections.
+				Doc
+				input = gets.strip.downcase
 
 			end
 		end

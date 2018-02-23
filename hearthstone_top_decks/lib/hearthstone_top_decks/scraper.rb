@@ -1,5 +1,4 @@
-#Here, I'll use a separate class for the scraper only and then fully commit to
-#each part doing as little as possible.
+require 'pry'
 class HearthstoneTopDecks::Scraper
 
 	attr_accessor :recent_updated_deck_guides, :sections, :featured_decks, :top_community_decks, :new_community_decks, :best_standard_meta_decks, :great_standard_meta_decks, :fringe_standard_meta_decks, :top_standard_meta_decks
@@ -16,41 +15,42 @@ class HearthstoneTopDecks::Scraper
 
 	def self.scraper
 		doc = Nokogiri::HTML(open("http://www.hearthstonetopdecks.com"))
-		#binding.pry
+	
 		doc.css('h3.text-center').children.each do |node|
-			@sections << node.text
+			#binding.pry
+			@sections.unshift(node.text)
 		end
 
 		doc.css('.meta-box')[0].css('ul li').children.each do |node|
-			@featured_decks << node.text
+			@featured_decks.unshift(node.text)
 		end
 
 		doc.css('.meta-box')[1].css('ul li').children.each do |node|
-			@new_community_decks << node.text
+			@new_community_decks.unshift(node.text)
 		end
 
 		doc.css('.meta-box')[2].css('ul li').children.each do |node|
-			@recent_updated_deck_guides << node.text
+			@recent_updated_deck_guides.unshift(node.text)
 		end
 
 		doc.css('.meta-box')[3].css('ul li').children.each do |node|
-			@top_community_decks << node.text
+			@top_community_decks.unshift(node.text)
 		end
 
 		doc.css('.meta-box')[4].css('h4').each do |node|
-			@top_standard_meta_decks << node.text
+			@top_standard_meta_decks.unshift(node.text)
 		end
 
 		doc.css('.deck-lists')[0].css('ul li').children.each do |node|
-			@best_standard_meta_decks << node.text
+			@best_standard_meta_decks.unshift(node.text)
 		end
 
 		doc.css('.deck-lists')[1].css('ul li').children.each do |node|
-			@great_standard_meta_decks << node.text
+			@great_standard_meta_decks.unshift(node.text)
 		end
 
 		doc.css('.deck-lists')[2].css('ul li').children.each do |node|
-			@fringe_standard_meta_decks << node.text
+			@fringe_standard_meta_decks.unshift(node.text)
 		end
 
 	end

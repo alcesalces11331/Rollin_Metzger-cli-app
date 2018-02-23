@@ -3,17 +3,21 @@
 class HearthstoneTopDecks::CLI
 
 	def call
+		HearthstoneTopDecks::Scraper.scraper
 		list_section
 		choose_section
 	end
 
 	def list_section
-		#here we're going to stub out what we want our output to look like.
+	
 		puts <<~DOC
-		Heh, greetings.
+		Heh, greetings, Hearthstone Fanatic!
+		
 		Here are the sections of to choose from:
+		
 		DOC
-		@sections = HearthstoneTopDecks::Sections.section
+
+		@sections = HearthstoneTopDecks::Scraper.sections
 		@sections.each do |section|
 			puts section 
 		end
@@ -21,20 +25,24 @@ class HearthstoneTopDecks::CLI
 
 	def choose_section
 		puts <<~DOC
+
 				Which section would you like to look at?
+
 				'1' for Top Standard Meta Decks
-				'2' for Featured Decks
-				'3' for Top Community Decks
+				'2' for Top Community Decks
+				'3' for Recent/Updated Deck Guides
 				'4' for New community Decks
-				'5' Recent/Updated Deck Guides
+				'5' Featured Decks
 				Or, enter 'exit' to exit.
 				DOC
 		input = nil
 		while input != "exit"
-			input = gets.strip.downcase
-			if input == 1
+			input = gets.strip.to_s
+			if input == "1"
 				puts <<~Doc
+
 					What section would you like to look at?
+					
 					'1' for Best Decks
 					'2' for Great Decks
 					'3' for Fringe Decks
@@ -42,6 +50,13 @@ class HearthstoneTopDecks::CLI
 					Or, enter 'sections' to see the sections.
 				Doc
 				input = gets.strip.downcase
+				if input == "1"
+					puts "Best Decks:"
+					@best_decks = HearthstoneTopDecks::Scraper.best_standard_meta_decks
+					@best_decks.each do |deck|
+						puts deck
+					end
+				end
 
 			end
 		end

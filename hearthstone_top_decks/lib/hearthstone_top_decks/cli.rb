@@ -41,6 +41,7 @@ class HearthstoneTopDecks::CLI
 			if input == "1"
 				puts <<~Doc
 
+					Top Standard Meta Decks
 					What section would you like to look at?
 
 					'1' for Best Decks
@@ -71,7 +72,30 @@ class HearthstoneTopDecks::CLI
 				elsif input == "sections"
 					choose_section
 				end
-
+			elsif input == "2"
+				puts "Top Community Decks:"
+				@top_community_decks = HearthstoneTopDecks::Scraper.top_community_decks
+				@top_community_decks.each do |deck|
+					puts deck
+				end
+			elsif input == "3"
+				puts "Recent/Updated Deck Guides:"
+				@recent_guides = HearthstoneTopDecks::Scraper.recent_updated_deck_guides
+				@recent_guides.each do |deck|
+					puts deck 
+				end
+			elsif input == "4"
+				puts "New Community Decks:"
+				@new_community = HearthstoneTopDecks::Scraper.new_community_decks
+				@new_community.each do |deck|
+					puts deck
+				end
+			elsif input == "5"
+				puts "Featured Decks:"
+				@featured = HearthstoneTopDecks::Scraper.featured_decks
+				@featured.each do |deck|
+					puts deck
+				end
 			end
 		end
 	end

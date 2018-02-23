@@ -2,13 +2,14 @@
 #each part doing as little as possible.
 class HearthstoneTopDecks::Scraper
 
-	attr_accessor :recent_updated_deck_guides, :sections, :featured_decks, :top_community_decks, :new_community_decks, :best_standard_meta_decks, :great_standard_meta_decks, :fringe_standard_meta_decks
+	attr_accessor :recent_updated_deck_guides, :sections, :featured_decks, :top_community_decks, :new_community_decks, :best_standard_meta_decks, :great_standard_meta_decks, :fringe_standard_meta_decks, :top_standard_meta_decks
 
 	@sections = []
 	@featured_decks = []
 	@top_community_decks = []
 	@new_community_decks = []
 	@recent_updated_deck_guides = []
+	@top_standard_meta_decks = []
 	@best_standard_meta_decks = []
 	@great_standard_meta_decks = []
 	@fringe_standard_meta_decks = []
@@ -36,7 +37,21 @@ class HearthstoneTopDecks::Scraper
 			@top_community_decks << node.text
 		end
 
-		
+		doc.css('.meta-box')[4].css('h4').each do |node|
+			@top_standard_meta_decks << node.text
+		end
+
+		doc.css('.deck-lists')[0].css('ul li').children.each do |node|
+			@best_standard_meta_decks << node.text
+		end
+
+		doc.css('.deck-lists')[1].css('ul li').children.each do |node|
+			@great_standard_meta_decks << node.text
+		end
+
+		doc.css('.deck-lists')[2].css('ul li').children.each do |node|
+			@fringe_standard_meta_decks << node.text
+		end
 
 	end
 

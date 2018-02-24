@@ -2,15 +2,11 @@ class HearthstoneTopDecks::Decks
 
 	attr_accessor 
 
-
-
-	def choose_deck
+	def self.choose_deck
 		puts <<~DOC
 				Which deck would you like to look at?
 				Or, enter 'exit' to exit.
 				DOC
-		#this will need to be scraped data to examine and use, but, for now,
-		#we'll stub it. stub it. stub it.
 		input = nil
 		while input != "exit"
 			input = gets.strip.downcase

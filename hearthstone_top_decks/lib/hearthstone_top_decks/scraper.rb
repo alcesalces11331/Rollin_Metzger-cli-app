@@ -5,13 +5,20 @@ class HearthstoneTopDecks::Scraper
 
 	@sections = []
 	@featured_decks = []
+	@featured_decks_html = []
 	@top_community_decks = []
+	@top_community_decks_html = []
 	@new_community_decks = []
+	@new_community_decks_html = []
 	@recent_updated_deck_guides = []
+	@recent_updated_deck_guides_html = []
 	@top_standard_meta_decks = []
 	@best_standard_meta_decks = []
+	@best_standard_meta_decks_html = []
 	@great_standard_meta_decks = []
+	@great_standard_meta_decks_html = []
 	@fringe_standard_meta_decks = []
+	@fringe_standard_meta_decks_html = []
 
 	def self.scraper
 		doc = Nokogiri::HTML(open("http://www.hearthstonetopdecks.com"))
@@ -23,18 +30,22 @@ class HearthstoneTopDecks::Scraper
 
 		doc.css('.meta-box')[0].css('ul li').children.each do |node|
 			@featured_decks.unshift(node.text)
+			@featured_decks_html.unshift(node.attribute('href').value)
 		end
 
 		doc.css('.meta-box')[1].css('ul li').children.each do |node|
 			@new_community_decks.unshift(node.text)
+			@new_community_decks_html.unshift(node.attribute('href').value)
 		end
 
 		doc.css('.meta-box')[2].css('ul li').children.each do |node|
 			@recent_updated_deck_guides.unshift(node.text)
+			@recent_updated_deck_guides_html.unshift(node.attribute('href').value)
 		end
 
 		doc.css('.meta-box')[3].css('ul li').children.each do |node|
 			@top_community_decks.unshift(node.text)
+			@top_community_decks_html.unshift(node.attribute('href').value)
 		end
 
 		doc.css('.meta-box')[4].css('h4').each do |node|
@@ -43,16 +54,21 @@ class HearthstoneTopDecks::Scraper
 
 		doc.css('.deck-lists')[0].css('ul li').children.each do |node|
 			@best_standard_meta_decks.unshift(node.text)
+			@best_standard_meta_decks_html.unshift(node.attribute('href').value)
 		end
 
 		doc.css('.deck-lists')[1].css('ul li').children.each do |node|
 			@great_standard_meta_decks.unshift(node.text)
+			@great_standard_meta_decks_html.unshift(node.attribute('href').value)
 		end
 
 		doc.css('.deck-lists')[2].css('ul li').children.each do |node|
 			@fringe_standard_meta_decks.unshift(node.text)
+			@fringe_standard_meta_decks_html.unshift(node.attribute('href').value)
 		end
+	end
 
+	def self.scraper_html_decks
 	end
 
 	def self.sections
@@ -89,6 +105,34 @@ class HearthstoneTopDecks::Scraper
 
 	def self.fringe_standard_meta_decks
 		@fringe_standard_meta_decks
+	end
+
+	def self.featured_decks_html
+		@featured_decks_html
+	end
+
+	def self.top_community_decks_html
+		@top_community_decks_html
+	end
+
+	def self.new_community_decks_html
+		@new_community_decks_html
+	end
+
+	def self.recent_updated_deck_guides_html
+		@recent_updated_deck_guides_html
+	end
+
+	def self.great_standard_meta_decks_html
+		@great_standard_meta_decks_html
+	end
+
+	def self.best_standard_meta_decks_html
+		@best_standard_meta_decks_html
+	end
+
+	def self.fringe_standard_meta_decks_html
+		@fringe_standard_meta_decks_html
 	end
 
 end

@@ -2,5 +2,4 @@
 
 require '../config/environment.rb'
 
-#HearthstoneTopDecks::Scraper.new.scraper 
 HearthstoneTopDecks::CLI.new.call

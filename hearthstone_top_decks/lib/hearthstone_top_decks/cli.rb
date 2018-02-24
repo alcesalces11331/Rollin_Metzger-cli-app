@@ -1,5 +1,3 @@
-# Our CLI Controller
-
 class HearthstoneTopDecks::CLI
 
 	def call
@@ -23,7 +21,7 @@ class HearthstoneTopDecks::CLI
 		end
 	end
 
-	def choose_section
+	def user_selection
 		puts <<~DOC
 
 				Which section would you like to look at?
@@ -35,71 +33,30 @@ class HearthstoneTopDecks::CLI
 				'5' Featured Decks
 				Or, enter 'exit' to exit.
 				DOC
+	end
+
+	def choose_section
+		user_selection
+
 		input = nil
 		while input != "exit"
 			input = gets.strip.to_s
 			if input == "1"
-				puts <<~Doc
-
-					Top Standard Meta Decks
-					What section would you like to look at?
-
-					'1' for Best Decks
-					'2' for Great Decks
-					'3' for Fringe Decks
-					Or, enter 'exit' to exit.
-					Or, enter 'sections' to see the sections.
-				Doc
-				input = gets.strip.downcase
-				if input == "1"
-					puts "Best Decks:"
-					@best_decks = HearthstoneTopDecks::Scraper.best_standard_meta_decks
-					@best_decks.each do |deck|
-						puts deck
-					end
-				elsif input == "2"
-					puts "Great Decks:"
-					@great_decks = HearthstoneTopDecks::Scraper.great_standard_meta_decks
-					@great_decks.each do |deck|
-						puts deck
-					end
-				elsif input == "3"
-					puts "Fringe Decks:"
-					@fringe_decks = HearthstoneTopDecks::Scraper.fringe_standard_meta_decks
-					@fringe_decks.each do |deck|
-						puts deck
-					end
-				elsif input == "sections"
-					choose_section
-				end
+				HearthstoneTopDecks::Sections.standard_meta_decks
 			elsif input == "2"
-				puts "Top Community Decks:"
-				@top_community_decks = HearthstoneTopDecks::Scraper.top_community_decks
-				@top_community_decks.each do |deck|
-					puts deck
-				end
+				HearthstoneTopDecks::Sections.top_community_decks
 			elsif input == "3"
-				puts "Recent/Updated Deck Guides:"
-				@recent_guides = HearthstoneTopDecks::Scraper.recent_updated_deck_guides
-				@recent_guides.each do |deck|
-					puts deck 
-				end
+				HearthstoneTopDecks::Sections.recent_updated_deck_guides
 			elsif input == "4"
-				puts "New Community Decks:"
-				@new_community = HearthstoneTopDecks::Scraper.new_community_decks
-				@new_community.each do |deck|
-					puts deck
-				end
+				HearthstoneTopDecks::Sections.new_community_decks
 			elsif input == "5"
-				puts "Featured Decks:"
-				@featured = HearthstoneTopDecks::Scraper.featured_decks
-				@featured.each do |deck|
-					puts deck
-				end
+				HearthstoneTopDecks::Sections.featured_decks
 			end
 		end
 	end
 
+	
+=begin
 	def choose_deck
 		puts <<~DOC
 				Which deck would you like to look at?
@@ -124,5 +81,5 @@ class HearthstoneTopDecks::CLI
 		end
 	end
 
-
+=end
 end

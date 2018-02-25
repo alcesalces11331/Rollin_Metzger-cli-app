@@ -66,6 +66,7 @@ class HearthstoneTopDecks::Sections
 				@best_decks.each do |deck|
 					puts deck
 				end
+				HearthstoneTopDecks::Decks.choose_deck
 				
 			elsif input == "2"
 				puts "Great Decks:"
@@ -137,6 +138,7 @@ class HearthstoneTopDecks::Sections
 		@featured.each do |deck|
 			puts deck
 		end
+		HearthstoneTopDecks::Decks.featured_decks
 		if input == "sections"
 			self.choose_section
 		end

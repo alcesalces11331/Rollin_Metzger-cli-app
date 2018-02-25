@@ -103,7 +103,7 @@ class HearthstoneTopDecks::Sections
 			@top_community_decks.each do |deck|
 				puts deck
 			end
-			puts ""
+			HearthstoneTopDecks::Decks.top_community_decks
 			if input == "sections"
 				self.choose_section
 			end
@@ -116,6 +116,7 @@ class HearthstoneTopDecks::Sections
 		@recent_guides.each do |deck|
 			puts deck 
 		end
+		HearthstoneTopDecks::Decks.recent_deck_guides 
 		if input == "sections"
 			self.choose_section
 		end

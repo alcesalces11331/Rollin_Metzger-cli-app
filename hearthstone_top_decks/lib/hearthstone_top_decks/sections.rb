@@ -127,6 +127,7 @@ class HearthstoneTopDecks::Sections
 		@new_community.each do |deck|
 			puts deck
 		end
+		HearthstoneTopDecks::Decks.new_community_decks
 		if input == "sections"
 			self.choose_section
 		end

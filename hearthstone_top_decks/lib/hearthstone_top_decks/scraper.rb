@@ -68,27 +68,6 @@ class HearthstoneTopDecks::Scraper
 		end
 	end
 
-	def self.scraper_featured_decks(input)
-		deck_info = {}
-		deck_list = {}
-
-		if input > @featured_decks_html.length
-			puts "No Deck Listed"
-		elsif input == "1"
-			doc = Nokogiri::HTML(open(@featured_decks_html[0]))
-			doc.css('.deck-list-sidebar ul li').each do |ele|
-				strong = ele.css('strong').text
-				deck_info[:klass] = ele.css('a').text if strong == "Class"
-				deck_info[:type] = ele.css('a').text if strong == "Type"
-				deck_info[:style] = ele.css('a').text if strong == "Style"
-				deck_info[:dust_cost] = ele.css('a').text if strong == "Dust Cost"
-			end
-			doc.css('.col-md-12').each do |ele|
-				deck_list[ele.css('.card-name')] = ele.css('.card-count')
-			end
-
-	end
-
 	def self.sections
 		@sections
 	end

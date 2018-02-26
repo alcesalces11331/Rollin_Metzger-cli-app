@@ -1,4 +1,3 @@
-require 'pry'
 class HearthstoneTopDecks::Scraper
 
 	attr_accessor :recent_updated_deck_guides, :sections, :featured_decks, :top_community_decks, :new_community_decks, :best_standard_meta_decks, :great_standard_meta_decks, :fringe_standard_meta_decks, :top_standard_meta_decks
@@ -24,7 +23,6 @@ class HearthstoneTopDecks::Scraper
 		doc = Nokogiri::HTML(open("http://www.hearthstonetopdecks.com"))
 	
 		doc.css('h3.text-center').children.each do |node|
-			#binding.pry
 			@sections.unshift(node.text)
 		end
 

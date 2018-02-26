@@ -66,7 +66,7 @@ class HearthstoneTopDecks::Sections
 				@best_decks.each do |deck|
 					puts deck
 				end
-				HearthstoneTopDecks::Decks.choose_deck
+				HearthstoneTopDecks::Decks.standard_best_decks
 				
 			elsif input == "2"
 				puts "Great Decks:"
@@ -146,6 +146,3 @@ class HearthstoneTopDecks::Sections
 		end
 	end
 end
-
-#like I want to use more files and isolate functionality, but I don't think
-#I really have too... >.> <.< T.T

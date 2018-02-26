@@ -10,120 +10,26 @@ class HearthstoneTopDecks::Decks
 		while input != "exit"
 			input = gets.strip.downcase.to_s
 			
-			if input == "1"
-				deck_info = {}
-				deck_list = {}
+			deck_info = {}
+			deck_list = {}
 
-				doc = Nokogiri::HTML(open(@featured_decks[0]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-
-			elsif input == "2"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@featured_decks[1]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-
-			elsif input == "3"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@featured_decks[2]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-					
-			elsif input == "4"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@featured_decks[3]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-					
-			elsif input == "5"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@featured_decks[4]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
+			doc = Nokogiri::HTML(open(@featured_decks[input.to_i - 1]))
+			doc.css('.deck-list-sidebar ul li').each do |ele|
+				strong = ele.css('strong').text
+				deck_info["Class"] = ele.css('a').text if strong == "Class:"
+				deck_info["Type"] = ele.css('a').text if strong == "Type:"
+				deck_info["Style"] = ele.css('a').text if strong == "Style:"
+				deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
+			end
+			doc.css('.card-frame').each do |ele|
+				deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
+			end
+			deck_info.each do |key, value|
+				puts "#{key} - #{value}"
+				puts
+			end
+			deck_list.each do |key, value|
+				puts "#{key} - #{value}"
 			end
 		end
 	end
@@ -138,120 +44,26 @@ class HearthstoneTopDecks::Decks
 		while input != "exit"
 			input = gets.strip.downcase.to_s
 			
-			if input == "1"
-				deck_info = {}
-				deck_list = {}
+			deck_info = {}
+			deck_list = {}
 
-				doc = Nokogiri::HTML(open(@new_community_decks[0]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-
-			elsif input == "2"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@new_community_decks[1]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-
-			elsif input == "3"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@new_community_decks[2]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-					
-			elsif input == "4"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@new_community_decks[3]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-					
-			elsif input == "5"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@new_community_decks[4]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
+			doc = Nokogiri::HTML(open(@new_community_decks[input.to_i - 1]))
+			doc.css('.deck-list-sidebar ul li').each do |ele|
+				strong = ele.css('strong').text
+				deck_info["Class"] = ele.css('a').text if strong == "Class:"
+				deck_info["Type"] = ele.css('a').text if strong == "Type:"
+				deck_info["Style"] = ele.css('a').text if strong == "Style:"
+				deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
+			end
+			doc.css('.card-frame').each do |ele|
+				deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
+			end
+			deck_info.each do |key, value|
+				puts "#{key} - #{value}"
+				puts
+			end
+			deck_list.each do |key, value|
+				puts "#{key} - #{value}"
 			end
 		end
 	end
@@ -266,120 +78,26 @@ class HearthstoneTopDecks::Decks
 		while input != "exit"
 			input = gets.strip.downcase.to_s
 			
-			if input == "1"
-				deck_info = {}
-				deck_list = {}
+			deck_info = {}
+			deck_list = {}
 
-				doc = Nokogiri::HTML(open(@top_community_decks[0]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-
-			elsif input == "2"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@top_community_decks[1]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-
-			elsif input == "3"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@top_community_decks[2]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-					
-			elsif input == "4"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@top_community_decks[3]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-					
-			elsif input == "5"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@top_community_decks[4]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
+			doc = Nokogiri::HTML(open(@top_community_decks[input.to_i - 1]))
+			doc.css('.deck-list-sidebar ul li').each do |ele|
+				strong = ele.css('strong').text
+				deck_info["Class"] = ele.css('a').text if strong == "Class:"
+				deck_info["Type"] = ele.css('a').text if strong == "Type:"
+				deck_info["Style"] = ele.css('a').text if strong == "Style:"
+				deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
+			end
+			doc.css('.card-frame').each do |ele|
+				deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
+			end
+			deck_info.each do |key, value|
+				puts "#{key} - #{value}"
+				puts
+			end
+			deck_list.each do |key, value|
+				puts "#{key} - #{value}"
 			end
 		end
 	end
@@ -393,121 +111,27 @@ class HearthstoneTopDecks::Decks
 		input = nil
 		while input != "exit"
 			input = gets.strip.downcase.to_s
-			
-			if input == "1"
-				deck_info = {}
-				deck_list = {}
+		
+			deck_info = {}
+			deck_list = {}
 
-				doc = Nokogiri::HTML(open(@recent_deck_guides[0]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-
-			elsif input == "2"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@recent_deck_guides[1]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-
-			elsif input == "3"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@recent_deck_guides[2]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-					
-			elsif input == "4"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@recent_deck_guides[3]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
-					
-			elsif input == "5"
-				deck_info = {}
-				deck_list = {}
-
-				doc = Nokogiri::HTML(open(@recent_deck_guides[4]))
-				doc.css('.deck-list-sidebar ul li').each do |ele|
-					strong = ele.css('strong').text
-					deck_info["Class"] = ele.css('a').text if strong == "Class:"
-					deck_info["Type"] = ele.css('a').text if strong == "Type:"
-					deck_info["Style"] = ele.css('a').text if strong == "Style:"
-					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-				end
-				doc.css('.card-frame').each do |ele|
-					deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-				end
-				deck_info.each do |key, value|
-					puts "#{key} - #{value}"
-					puts
-				end
-				deck_list.each do |key, value|
-					puts "#{key} - #{value}"
-				end
+			doc = Nokogiri::HTML(open(@recent_deck_guides[input.to_i - 1]))
+			doc.css('.deck-list-sidebar ul li').each do |ele|
+				strong = ele.css('strong').text
+				deck_info["Class"] = ele.css('a').text if strong == "Class:"
+				deck_info["Type"] = ele.css('a').text if strong == "Type:"
+				deck_info["Style"] = ele.css('a').text if strong == "Style:"
+				deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
+			end
+			doc.css('.card-frame').each do |ele|
+				deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
+			end
+			deck_info.each do |key, value|
+				puts "#{key} - #{value}"
+				puts
+			end
+			deck_list.each do |key, value|
+				puts "#{key} - #{value}"
 			end
 		end
 	end
@@ -521,27 +145,99 @@ class HearthstoneTopDecks::Decks
 				Or, enter 'exit' to exit.
 				DOC
 		input = nil
-		input = gets.strip.downcase.to_i
+		while input != "exit"
+			input = gets.strip.downcase.to_s
 
-		deck_info = {}
-		deck_list = {}
-		doc = Nokogiri::HTML(open(@best_decks[input - 1]))
-		doc.css('.deck-list-sidebar ul li').each do |ele|
-				strong = ele.css('strong').text
-				deck_info["Class"] = ele.css('a').text if strong == "Class:"
-				deck_info["Type"] = ele.css('a').text if strong == "Type:"
-				deck_info["Style"] = ele.css('a').text if strong == "Style:"
-				deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
+			deck_info = {}
+			deck_list = {}
+			doc = Nokogiri::HTML(open(@best_decks[input.to_i - 1]))
+			doc.css('.deck-list-sidebar ul li').each do |ele|
+					strong = ele.css('strong').text
+					deck_info["Class"] = ele.css('a').text if strong == "Class:"
+					deck_info["Type"] = ele.css('a').text if strong == "Type:"
+					deck_info["Style"] = ele.css('a').text if strong == "Style:"
+					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
+			end
+			doc.css('.card-frame').each do |ele|
+				deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
+			end
+			deck_info.each do |key, value|
+				puts "#{key} - #{value}"
+				puts
+			end
+			deck_list.each do |key, value|
+				puts "#{key} - #{value}"
+			end
 		end
-		doc.css('.card-frame').each do |ele|
-			deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
+	end
+
+	def self.standard_great_decks
+		@great_decks = HearthstoneTopDecks::Scraper.great_standard_meta_decks_html
+		@great_decks_length = @great_decks.length
+		puts <<~DOC
+				There are #{@best_decks_length} to look at.
+				Which deck would you like to look at?
+				Or, enter 'exit' to exit.
+				DOC
+		input = nil
+		while input != "exit"
+			input = gets.strip.downcase.to_s
+
+			deck_info = {}
+			deck_list = {}
+			doc = Nokogiri::HTML(open(@great_decks[input.to_i - 1]))
+			doc.css('.deck-list-sidebar ul li').each do |ele|
+					strong = ele.css('strong').text
+					deck_info["Class"] = ele.css('a').text if strong == "Class:"
+					deck_info["Type"] = ele.css('a').text if strong == "Type:"
+					deck_info["Style"] = ele.css('a').text if strong == "Style:"
+					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
+			end
+			doc.css('.card-frame').each do |ele|
+				deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
+			end
+			deck_info.each do |key, value|
+				puts "#{key} - #{value}"
+				puts
+			end
+			deck_list.each do |key, value|
+				puts "#{key} - #{value}"
+			end
 		end
-		deck_info.each do |key, value|
-			puts "#{key} - #{value}"
-			puts
-		end
-		deck_list.each do |key, value|
-			puts "#{key} - #{value}"
+	end
+
+	def self.standard_fringe_decks
+		@fringe_decks = HearthstoneTopDecks::Scraper.fringe_standard_meta_decks_html
+		@fringe_decks_length = @fringe_decks.length
+		puts <<~DOC
+				There are #{@best_decks_length} to look at.
+				Which deck would you like to look at?
+				Or, enter 'exit' to exit.
+				DOC
+		input = nil
+		while input != "exit"
+			input = gets.strip.downcase.to_s
+
+			deck_info = {}
+			deck_list = {}
+			doc = Nokogiri::HTML(open(@fringe_decks[input.to_i - 1]))
+			doc.css('.deck-list-sidebar ul li').each do |ele|
+					strong = ele.css('strong').text
+					deck_info["Class"] = ele.css('a').text if strong == "Class:"
+					deck_info["Type"] = ele.css('a').text if strong == "Type:"
+					deck_info["Style"] = ele.css('a').text if strong == "Style:"
+					deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
+			end
+			doc.css('.card-frame').each do |ele|
+				deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
+			end
+			deck_info.each do |key, value|
+				puts "#{key} - #{value}"
+				puts
+			end
+			deck_list.each do |key, value|
+				puts "#{key} - #{value}"
+			end
 		end
 	end
 end

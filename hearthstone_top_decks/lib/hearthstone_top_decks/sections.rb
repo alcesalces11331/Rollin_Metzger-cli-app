@@ -74,6 +74,7 @@ class HearthstoneTopDecks::Sections
 				@great_decks.each do |deck|
 					puts deck
 				end
+				HearthstoneTopDecks::Decks.standard_great_decks
 				
 			elsif input == "3"
 				puts "Fringe Decks:"
@@ -81,6 +82,7 @@ class HearthstoneTopDecks::Sections
 				@fringe_decks.each do |deck|
 					puts deck
 				end
+				HearthstoneTopDecks::Decks.standard_fringe_decks
 
 			elsif input == "sections"
 				self.choose_section

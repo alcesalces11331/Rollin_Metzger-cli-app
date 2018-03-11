@@ -1,23 +1,21 @@
 class HearthstoneTopDecks::Scraper
 
-	attr_accessor :recent_updated_deck_guides, :sections, :featured_decks, :top_community_decks, :new_community_decks, :best_standard_meta_decks, :great_standard_meta_decks, :fringe_standard_meta_decks, :top_standard_meta_decks
+	#deck = Deck.find(1)
+	#deck.html #=> html
+	#Scraper.scrape_deck_html(deck.html)
 
-	@sections = []
-	@featured_decks = []
-	@featured_decks_html = []
-	@top_community_decks = []
-	@top_community_decks_html = []
-	@new_community_decks = []
-	@new_community_decks_html = []
-	@recent_updated_deck_guides = []
-	@recent_updated_deck_guides_html = []
-	@top_standard_meta_decks = []
-	@best_standard_meta_decks = []
-	@best_standard_meta_decks_html = []
-	@great_standard_meta_decks = []
-	@great_standard_meta_decks_html = []
-	@fringe_standard_meta_decks = []
-	@fringe_standard_meta_decks_html = []
+	def get_page
+		Nokogiri::HTML(open("http://www.hearthstonetopdecks.com")
+	end
+
+	def make_sections
+	end
+
+	def make_decks
+	end
+
+	def scrape_decks_index
+	end
 
 	def self.scraper
 		doc = Nokogiri::HTML(open("http://www.hearthstonetopdecks.com"))
@@ -64,70 +62,7 @@ class HearthstoneTopDecks::Scraper
 			@fringe_standard_meta_decks.unshift(node.text)
 			@fringe_standard_meta_decks_html.unshift(node.attribute('href').value)
 		end
-	end
 
-	def self.sections
-		@sections
-	end
-
-	def self.featured_decks
-		@featured_decks
-	end
-
-	def self.top_community_decks
-		@top_community_decks
-	end
-
-	def self.new_community_decks
-		@new_community_decks
-	end
-
-	def self.recent_updated_deck_guides
-		@recent_updated_deck_guides
-	end
-
-	def self.top_standard_meta_decks
-		@top_standard_meta_decks
-	end
-
-	def self.great_standard_meta_decks
-		@great_standard_meta_decks
-	end
-
-	def self.best_standard_meta_decks
-		@best_standard_meta_decks
-	end
-
-	def self.fringe_standard_meta_decks
-		@fringe_standard_meta_decks
-	end
-
-	def self.featured_decks_html
-		@featured_decks_html
-	end
-
-	def self.top_community_decks_html
-		@top_community_decks_html
-	end
-
-	def self.new_community_decks_html
-		@new_community_decks_html
-	end
-
-	def self.recent_updated_deck_guides_html
-		@recent_updated_deck_guides_html
-	end
-
-	def self.great_standard_meta_decks_html
-		@great_standard_meta_decks_html
-	end
-
-	def self.best_standard_meta_decks_html
-		@best_standard_meta_decks_html
-	end
-
-	def self.fringe_standard_meta_decks_html
-		@fringe_standard_meta_decks_html
 	end
 
 end

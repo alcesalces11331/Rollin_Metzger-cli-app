@@ -1,7 +1,7 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "hearthstone_top_decks/version"
+require "hearthstone_top_decks/config/environment.rb"
 
 Gem::Specification.new do |spec|
   spec.name          = "hearthstone_top_decks"
@@ -9,15 +9,15 @@ Gem::Specification.new do |spec|
   spec.authors       = ["alcesalces11331"]
   spec.email         = ["rollin.metzger@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "Popular Hearthstone Decks"
+  spec.description   = "Scrape www.hearthstonetopdecks.com and display information."
+  spec.homepage      = "https://github.com/alcesalces11331/Rollin_Metzger-cli-app/tree/master/hearthstone_top_decks"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata["allowed_push_host"] = "http://mygemserver.com"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
@@ -33,8 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "pry"
 
-  spec.add_dependency "nokogiri"
+  spec.add_runtime_dependency "nokogiri"
 end
 end

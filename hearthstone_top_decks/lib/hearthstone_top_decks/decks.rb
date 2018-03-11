@@ -1,5 +1,36 @@
 class HearthstoneTopDecks::Decks
 
+	attr_accessor :name, :url, :klass, :cost, :type, :style, :section, :list
+
+	@@all = []
+
+	def self.new_from_index_page(doc)
+		self.new(
+			)
+	end
+
+	def initialize(name = nil, url = nil, klass = nil, cost = nil, type = nil, style = nil, section = nil, list = nil)
+		@name = name
+		@url = url
+		@klass = klass
+		@cost = cost
+		@type = type
+		@style = style
+		@section = section
+		@list = list 
+		@@all << self
+	end
+
+	def self.all
+		@@all
+	end
+
+	def self.find(id)
+		self.all[id-1]
+	end
+
+
+=begin
 	def self.featured_decks
 		@featured_decks = HearthstoneTopDecks::Scraper.featured_decks_html
 		puts <<~DOC
@@ -31,6 +62,9 @@ class HearthstoneTopDecks::Decks
 			deck_list.each do |key, value|
 				puts "#{key} - #{value}"
 			end
+			puts
+			puts "enter 'exit' to exit"
+			input = gets.strip.downcase.to_s
 		end
 	end
 
@@ -240,4 +274,5 @@ class HearthstoneTopDecks::Decks
 			end
 		end
 	end
+=end
 end

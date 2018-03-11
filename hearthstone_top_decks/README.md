@@ -1,8 +1,6 @@
 # HearthstoneTopDecks
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hearthstone_top_decks`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem scrapes www.hearthstonetopdecks.com for displayable deck information. it scrapes the five sections allowing the user to choose a section and a deck within that section, and will display that information for the user to see.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use this gem, simply require it as you would any other gem. Or, you may simply run the application as CLI.
 
 ## Development
 

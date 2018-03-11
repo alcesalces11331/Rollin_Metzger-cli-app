@@ -11,16 +11,8 @@ class HearthstoneTopDecks::CLI
 	def start
 		puts ""
 		input = gets.strip.to_i
-		
-		print_sections(input)
 
-		puts ""
-		puts "What section would you like more information on?"
-		input = gets.strip
-
-		section = HearthstoneTopDecks::Sections.find(input.to_i)
-
-		print_section_decks(section)
+		print_decks
 
 		puts ""
 		puts "What deck would you like more information on?"
@@ -38,41 +30,33 @@ class HearthstoneTopDecks::CLI
 			start
 		else
 			puts ""
-			puts "Well played. "
+			puts "Well played. Thanks for visiting."
 			exit
 		end
 	end
 
-	def print_sections(input)
+	def print_decks
 		puts ""
-		puts "~~~~~~~~~ Sections ~~~~~~~~~"
+		puts "~~~~~~~~~ Standard Meta Decks ~~~~~~~~~"
 		puts ""
-		HearthstoneTopDecks::Sections.all.each.with_index(input) do |section, index|
-			puts "#{index}. #{section.name}"
-		end
-	end
-
-	def print_section_decks(section)
-		puts ""
-		puts "~~~~~~~~~ #{section.name} Decks: ~~~~~~~~~"
-		puts ""
-		HearthstoneTopDecks::Decks.all.each.with_index(input) do |deck, index|
-			if 	deck.section == section
-				puts "#{index}. #{deck}"
-			end
+		HearthstoneTopDecks::Decks.all.each.with_index do |deck, index|		
+			puts "#{index}. #{deck}"
 		end
 	end
 
 	def print_deck(deck)
 		puts ""
-		puts "~~~~~~~~~ #{deck.name} ~~~~~~~~~"
+		puts "~~~~~~~~~ #{deck.name} ~~~~~~~~"
 		puts ""
-		puts "Class: 		#{deck.klass}"
-		puts "Type: 		#{deck.type}"
-		puts "Style: 		#{deck.style}"
-		puts "Cost: 		#{deck.cost}"
+		puts "Class: 			#{deck.klass}"
+		puts "Format: 			#{deck.phormat}"
+		puts "Type: 			#{deck.type}"
+		puts "Season: 			#{deck.season}"
+		puts "Style: 			#{deck.style}"
+		puts "Meta Deck: 		#{deck.meta_deck}"
+		puts "Cost: 			#{deck.cost}"
 		puts ""
-		puts "~~~~~~~~~ Card List ~~~~~~~~~"
+		puts "~~~~~~~~~~ Card List ~~~~~~~~~~"
 		puts ""
 		puts "#{deck.list}"
 		puts ""

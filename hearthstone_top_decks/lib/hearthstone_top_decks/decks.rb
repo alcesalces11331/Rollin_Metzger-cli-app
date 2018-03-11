@@ -1,23 +1,19 @@
 class HearthstoneTopDecks::Decks
 
-	attr_accessor :name, :url, :klass, :cost, :type, :style, :section, :list
+	attr_accessor :name, :url, :klass, :cost, :type, :style, :list, :phormat, :season, :meta_deck
 
 	@@all = []
 
 	def self.new_from_index_page(doc)
 		self.new(
+			doc.css('a').text,
+			doc.attribute('href').value,
 			)
 	end
 
-	def initialize(name = nil, url = nil, klass = nil, cost = nil, type = nil, style = nil, section = nil, list = nil)
+	def initialize(name = nil, url = nil)
 		@name = name
 		@url = url
-		@klass = klass
-		@cost = cost
-		@type = type
-		@style = style
-		@section = section
-		@list = list 
 		@@all << self
 	end
 
@@ -27,6 +23,39 @@ class HearthstoneTopDecks::Decks
 
 	def self.find(id)
 		self.all[id-1]
+	end
+
+	def list
+		@list 
+		# nokogiri code
+	end
+
+	def klass
+		@klass = page.css...
+	end
+
+	def type
+		@type = page.css
+	end
+
+	def style
+		@style = 
+	end
+
+	def phormat
+		@phormat = 
+	end
+
+	def season
+		@season =
+	end
+
+	def meta_deck
+		@meta_deck =
+	end
+
+	def page
+		page ||= Nokogiri::HTML(open(self.url))
 	end
 
 
@@ -44,29 +73,7 @@ class HearthstoneTopDecks::Decks
 			deck_info = {}
 			deck_list = {}
 
-			doc = Nokogiri::HTML(open(@featured_decks[input.to_i - 1]))
-			doc.css('.deck-list-sidebar ul li').each do |ele|
-				strong = ele.css('strong').text
-				deck_info["Class"] = ele.css('a').text if strong == "Class:"
-				deck_info["Type"] = ele.css('a').text if strong == "Type:"
-				deck_info["Style"] = ele.css('a').text if strong == "Style:"
-				deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-			end
-			doc.css('.card-frame').each do |ele|
-				deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
-			end
-			deck_info.each do |key, value|
-				puts "#{key} - #{value}"
-				puts
-			end
-			deck_list.each do |key, value|
-				puts "#{key} - #{value}"
-			end
-			puts
-			puts "enter 'exit' to exit"
-			input = gets.strip.downcase.to_s
-		end
-	end
+			
 
 	def self.new_community_decks
 		@new_community_decks = HearthstoneTopDecks::Scraper.new_community_decks_html

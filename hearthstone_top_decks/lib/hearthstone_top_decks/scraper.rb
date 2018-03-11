@@ -1,20 +1,40 @@
 class HearthstoneTopDecks::Scraper
 
-	#deck = Deck.find(1)
-	#deck.html #=> html
-	#Scraper.scrape_deck_html(deck.html)
-
-	def get_page
+	def doc
 		Nokogiri::HTML(open("http://www.hearthstonetopdecks.com")
 	end
 
-	def make_sections
-	end
-
 	def make_decks
+		doc.css('.meta-box ul li').each do |r|
+			HearthstoneTopDecks::Decks.new_from_index_page(r)
+		end
 	end
 
-	def scrape_decks_index
+
+=begin
+
+doc = Nokogiri::HTML(open(@featured_decks[input.to_i - 1]))
+			doc.css('.deck-list-sidebar ul li').each do |ele|
+				strong = ele.css('strong').text
+				deck_info["Class"] = ele.css('a').text if strong == "Class:"
+				deck_info["Type"] = ele.css('a').text if strong == "Type:"
+				deck_info["Style"] = ele.css('a').text if strong == "Style:"
+				deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
+			end
+			doc.css('.card-frame').each do |ele|
+				deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
+			end
+			deck_info.each do |key, value|
+				puts "#{key} - #{value}"
+				puts
+			end
+			deck_list.each do |key, value|
+				puts "#{key} - #{value}"
+			end
+			puts
+			puts "enter 'exit' to exit"
+			input = gets.strip.downcase.to_s
+		end
 	end
 
 	def self.scraper
@@ -64,5 +84,5 @@ class HearthstoneTopDecks::Scraper
 		end
 
 	end
-
+=end
 end

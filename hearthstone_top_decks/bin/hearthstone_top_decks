@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require '../config/environment.rb'
+require_relative '../lib/hearthstone_top_decks'
 
 HearthstoneTopDecks::CLI.new.call

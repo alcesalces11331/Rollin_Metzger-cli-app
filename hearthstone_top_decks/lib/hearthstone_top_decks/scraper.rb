@@ -10,7 +10,7 @@ class HearthstoneTopDecks::Scraper
 		end
 	end
 
-
+end
 =begin
 
 doc = Nokogiri::HTML(open(@featured_decks[input.to_i - 1]))
@@ -85,4 +85,4 @@ doc = Nokogiri::HTML(open(@featured_decks[input.to_i - 1]))
 
 	end
 =end
-end
+

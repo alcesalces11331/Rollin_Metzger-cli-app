@@ -7,7 +7,7 @@ class HearthstoneTopDecks::Decks
 	def self.new_from_index_page(doc)
 		self.new(
 			doc.css('a').text,
-			doc.attribute('href').value,
+			doc.attribute('href').value
 			)
 	end
 
@@ -25,33 +25,46 @@ class HearthstoneTopDecks::Decks
 		self.all[id-1]
 	end
 
+	def deck_specs
+		page.css('.deck-list-sidebar ul li').collect do |info|
+			strong = info.css('strong').text
+			@klass = info.css('a').text if strong == "Class:"
+			@phormat = info.css('a').text if strong == "Format:"
+			@type = info.css('a').text if strong == "Type:"
+			@season = info.css('a').text if strong == "Season:"
+			@style = info.css('a').text if strong == "Style:"
+			@meta_deck = info.css('a').text if strong == "Meta Deck:"
+			@cost = info.css('a').text if strong == "Dust Cost:"
+		end
+	end
+
 	def list
 		@list 
 		# nokogiri code
 	end
 
 	def klass
-		@klass = page.css...
+		@klass ||= page.css('.deck-list-sidebar ul li a')
 	end
 
 	def type
-		@type = page.css
+		@type ||= page.css
 	end
 
 	def style
-		@style = 
+		@style ||= 
 	end
 
 	def phormat
-		@phormat = 
+		@phormat ||= 
 	end
 
 	def season
-		@season =
+		@season ||=
 	end
 
 	def meta_deck
-		@meta_deck =
+		@meta_deck ||=
 	end
 
 	def page
@@ -60,6 +73,14 @@ class HearthstoneTopDecks::Decks
 
 
 =begin
+doc = Nokogiri::HTML(open(@new_community_decks[input.to_i - 1]))
+			doc.css('.deck-list-sidebar ul li').each do |ele|
+				strong = ele.css('strong').text
+				deck_info["Class"] = ele.css('a').text if strong == "Class:"
+				deck_info["Type"] = ele.css('a').text if strong == "Type:"
+				deck_info["Style"] = ele.css('a').text if strong == "Style:"
+				deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
+			end
 	def self.featured_decks
 		@featured_decks = HearthstoneTopDecks::Scraper.featured_decks_html
 		puts <<~DOC
@@ -88,14 +109,7 @@ class HearthstoneTopDecks::Decks
 			deck_info = {}
 			deck_list = {}
 
-			doc = Nokogiri::HTML(open(@new_community_decks[input.to_i - 1]))
-			doc.css('.deck-list-sidebar ul li').each do |ele|
-				strong = ele.css('strong').text
-				deck_info["Class"] = ele.css('a').text if strong == "Class:"
-				deck_info["Type"] = ele.css('a').text if strong == "Type:"
-				deck_info["Style"] = ele.css('a').text if strong == "Style:"
-				deck_info["Dust Cost"] = ele.text if strong == "Dust Cost:"
-			end
+			
 			doc.css('.card-frame').each do |ele|
 				deck_list[ele.css('.card-name').text] = ele.css('.card-count').text
 			end

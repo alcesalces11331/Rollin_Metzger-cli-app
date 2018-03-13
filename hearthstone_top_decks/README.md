@@ -1,6 +1,6 @@
 # HearthstoneTopDecks
 
-This gem scrapes www.hearthstonetopdecks.com for displayable deck information. it scrapes the five sections allowing the user to choose a section and a deck within that section, and will display that information for the user to see.
+This gem scrapes www.hearthstonetopdecks.com for displayable deck information. It scrapes the current standard meta decks and provides them to you for you to look at.
 
 ## Installation
 
@@ -30,7 +30,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hearthstone_top_decks. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/alcesalces11331/hearthstone_top_decks. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -38,4 +38,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the HearthstoneTopDecks project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/hearthstone_top_decks/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the HearthstoneTopDecks project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/alcesalces11331/hearthstone_top_decks/blob/master/CODE_OF_CONDUCT.md).

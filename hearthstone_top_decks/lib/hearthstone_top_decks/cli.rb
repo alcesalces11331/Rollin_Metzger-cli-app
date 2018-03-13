@@ -1,22 +1,32 @@
 class HearthstoneTopDecks::CLI
 
 	def call
-		HearthstoneTopDecks::Scraper.new.make_decks
 		puts <<~DOC
-			Well met! Welcome to a CLI for Hearthstone Top Decks
+
+			Well met, Champion! Let's look at some decks!
+
+			Loading Decks...
 			DOC
+		HearthstoneTopDecks::Scraper.new.make_decks
 		start
 	end
 
 	def start
 		puts ""
-		input = gets.strip.to_i
-
+		puts "Here are the Standard Meta Decks currently on Ladder:"
+		sleep 3
+	
 		print_decks
 
 		puts ""
 		puts "What deck would you like more information on?"
-		input = gets.strip
+		
+		input = gets.strip.to_i
+		list_length = HearthstoneTopDecks::Decks.all.length
+		until input <= list_length 
+			puts "Please enter a number less than #{list_length + 1}"
+			input = gets.strip.to_i
+		end
 
 		deck = HearthstoneTopDecks::Decks.find(input.to_i)
 
@@ -30,7 +40,7 @@ class HearthstoneTopDecks::CLI
 			start
 		else
 			puts ""
-			puts "Well played. Thanks for visiting."
+			puts "Well played, Hero. Thanks for visiting."
 			exit
 		end
 	end
@@ -40,25 +50,25 @@ class HearthstoneTopDecks::CLI
 		puts "~~~~~~~~~ Standard Meta Decks ~~~~~~~~~"
 		puts ""
 		HearthstoneTopDecks::Decks.all.each.with_index do |deck, index|		
-			puts "#{index}. #{deck}"
+			puts "#{index + 1}. #{deck.name}"
 		end
 	end
 
 	def print_deck(deck)
 		puts ""
-		puts "~~~~~~~~~ #{deck.name} ~~~~~~~~"
+		puts "~~~~~~~~~~#{deck.name} ~~~~~~"
 		puts ""
-		puts "Class: 			#{deck.klass}"
-		puts "Format: 			#{deck.phormat}"
-		puts "Type: 			#{deck.type}"
-		puts "Season: 			#{deck.season}"
-		puts "Style: 			#{deck.style}"
-		puts "Meta Deck: 		#{deck.meta_deck}"
-		puts "Cost: 			#{deck.cost}"
+		puts "Class: #{deck.klass}"
+		puts "Format: #{deck.phormat}"
+		puts "Type: #{deck.type}"
+		puts "Style: #{deck.style}"
+		puts "Meta Deck: #{deck.meta_deck}"
+		puts "#{deck.cost}"
 		puts ""
-		puts "~~~~~~~~~~ Card List ~~~~~~~~~~"
+		puts "~~~~~~~~~~ Deck List ~~~~~~~~~~"
 		puts ""
-		puts "#{deck.list}"
-		puts ""
+		deck.card_list.each do |key, value| 
+			puts "#{key} - #{value}"
+		end
 	end
 end

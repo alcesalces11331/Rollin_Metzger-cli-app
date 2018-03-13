@@ -1,12 +1,15 @@
+require 'pry'
 class HearthstoneTopDecks::Scraper
 
 	def doc
-		Nokogiri::HTML(open("http://www.hearthstonetopdecks.com")
+		Nokogiri::HTML(open("http://www.hearthstonetopdecks.com"))
 	end
 
 	def make_decks
-		doc.css('.meta-box ul li').each do |r|
+		doc.css('.deck-lists ul li').each do |r|
+			#binding.pry
 			HearthstoneTopDecks::Decks.new_from_index_page(r)
+
 		end
 	end
 
